@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Tebak Angka</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+      background: linear-gradient(to right, #00c6ff, #0072ff);
+      color: white;
+    }
+    .container {
+      background: rgba(0,0,0,0.5);
+      padding: 20px;
+      border-radius: 10px;
+      display: inline-block;
+    }
+    input {
+      padding: 8px;
+      margin: 10px;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      background: #ff9800;
+      border: none;
+      border-radius: 5px;
+      color: white;
+    }
+    #result {
+      font-weight: bold;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎲 Game Tebak Angka 🎲</h1>
+    <p>Saya punya angka 1 sampai 10, coba tebak!</p>
+    <input type="number" id="guess" placeholder="Masukkan angka" min="1" max="10">
+    <button onclick="cekTebakan()">Tebak</button>
+    <p id="result"></p>
+  </div>
+
+  <script>
+    const angkaRahasia = Math.floor(Math.random() * 10) + 1;
+
+    function cekTebakan() {
+      const tebakan = parseInt(document.getElementById("guess").value);
+      let resultText = "";
+
+      if (isNaN(tebakan)) {
+        resultText = "Masukkan angka yang valid!";
+      } else if (tebakan < angkaRahasia) {
+        resultText = "Terlalu kecil ❌";
+      } else if (tebakan > angkaRahasia) {
+        resultText = "Terlalu besar ❌";
+      } else {
+        resultText = "🎉 Selamat, tebakanmu benar!";
+      }
+
+      document.getElementById("result").innerText = resultText;
+    }
+  </script>
+</body>
+</html>
